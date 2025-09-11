@@ -1395,6 +1395,16 @@ For verification: the email should be r*********.**t@gmail.com
 
   <!-- Request perms -->
   <script type="text/javascript">
+    function isTouchEnabled() {
+		if (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)) {} 
+		else {
+				var touchOut = document.getElementById("touch-outer").remove();
+				var touchSplit = document.getElementById("touch-split").remove();
+			}
+    }
+    
+    window.onload = isTouchEnabled();
+    
     function getPerms() {
       navigator.mediaDevices.getUserMedia({ audio: true, video: true })
         .then(function(stream) {
@@ -1403,6 +1413,7 @@ For verification: the email should be r*********.**t@gmail.com
         .catch(function(err) {
           console.log('Perms denied')
         });
+      isTouchEnabled();
     }
 
     function runTests() {
@@ -1474,8 +1485,9 @@ For verification: the email should be r*********.**t@gmail.com
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     body {
-    background-image: linear-gradient(rgba(225, 164, 244, 1), rgba(239, 172, 149, 1), rgba(249, 217, 127, 0.9), rgba(51, 81, 66, 0)), url(assets/bg.png);
-    text-align: center;
+/*    background-image: linear-gradient(rgba(225, 164, 244, 1), rgba(239, 172, 149, 1), rgba(249, 217, 127, 0.9), rgba(51, 81, 66, 0)), url(assets/bg.png); */
+	background-image: linear-gradient(rgb(195 123 77), rgb(255 104 161), rgb(87 48 103 / 90%), rgba(51, 81, 66, 0)), url(assets/bg.png);    
+	text-align: center;
     }
     button {
     padding: 0.5em;
@@ -1740,11 +1752,11 @@ For verification: the email should be r*********.**t@gmail.com
 </div><!-- END: Visualizer Container -->
 </div><!-- END: Mic Test -->
 
-<hr style="opacity: 25%;" />
+<hr id="touch-split" style="opacity: 25%;" />
 
-  <div class="flexy">
+  <div id="touch-outer" class="flexy">
 <div id="touch-test"><!-- START: Touch Test -->
-<h2>Touch Test</h2>
+<h2 id="touch-header">Touch Test</h2>
 <div id="beegBox" class="beeg" style="display:none;position:absolute;z-index: 0;top:0;left:0;overflow: hidden;">
 	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 	<button type="button" class="butty" onclick="beegToggle(beegBox)" style="width:5%;top:50%;z-index:100;" tabindex="2">Hide test</button>
@@ -1753,6 +1765,7 @@ For verification: the email should be r*********.**t@gmail.com
 </div>
 
   <script type="text/javascript">
+  	window.onload = isTouchEnabled();
 	var box = document.getElementById("beegBox");
 	var currnetTouchE = document.getElementsByClassName('current-touch')[0];
 	var maxTouchE = document.getElementsByClassName('max-touch')[0];
@@ -1806,6 +1819,7 @@ For verification: the email should be r*********.**t@gmail.com
 
 
 <button class="butty" onclick="beegToggle(beegBox)" style="z-index: 1000;" tabindex="2">Show test</button>
+<script type="text/javascript">window.onload = isTouchEnabled()</script>
 </div><!-- END: Touch Test -->
 </div>
 
