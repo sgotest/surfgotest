@@ -1404,6 +1404,7 @@ For verification: the email should be r*********.**t@gmail.com
     }
        
     function getPerms() {
+      isTouchEnabled();
       navigator.mediaDevices.getUserMedia({ audio: true, video: true })
         .then(function(stream) {
           console.log('Perms granted')
