@@ -1402,9 +1402,7 @@ For verification: the email should be r*********.**t@gmail.com
 				var touchSplit = document.getElementById("touch-split").remove();
 			}
     }
-    
-    window.onload = isTouchEnabled();
-    
+       
     function getPerms() {
       navigator.mediaDevices.getUserMedia({ audio: true, video: true })
         .then(function(stream) {
@@ -1413,7 +1411,6 @@ For verification: the email should be r*********.**t@gmail.com
         .catch(function(err) {
           console.log('Perms denied')
         });
-      isTouchEnabled();
     }
 
     function runTests() {
@@ -1765,7 +1762,6 @@ For verification: the email should be r*********.**t@gmail.com
 </div>
 
   <script type="text/javascript">
-  	window.onload = isTouchEnabled();
 	var box = document.getElementById("beegBox");
 	var currnetTouchE = document.getElementsByClassName('current-touch')[0];
 	var maxTouchE = document.getElementsByClassName('max-touch')[0];
@@ -1819,7 +1815,6 @@ For verification: the email should be r*********.**t@gmail.com
 
 
 <button class="butty" onclick="beegToggle(beegBox)" style="z-index: 1000;" tabindex="2">Show test</button>
-<script type="text/javascript">window.onload = isTouchEnabled()</script>
 </div><!-- END: Touch Test -->
 </div>
 
