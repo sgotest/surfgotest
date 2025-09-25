@@ -1518,6 +1518,20 @@ For verification: the email should be r*********.**t@gmail.com
     strong{
     font-weight: 900;
     }
+    .column {
+    	flex: 1 1 100px;
+    }
+    .rainbowWahooYippeeYayyy {
+    	background-image: repeating-linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red, violet);
+    	background-size: 800% 800%;
+    	-webkit-background-clip: text;
+    	-webkit-text-fill-color: transparent;
+    	animation: rainbow 4s linear infinite;
+    }
+    @keyframes rainbow { 
+        0%{background-position:0% 50%}
+        100%{background-position:100% 25%}
+    }
 
     /* Classes */
     .background-blue {
@@ -1686,8 +1700,8 @@ For verification: the email should be r*********.**t@gmail.com
 
     .flexy {
       display: flex;
-      margin-left: 15%;
-      margin-right: 15%;
+      margin-left: 12%;
+      margin-right: 12%;
     }
     .break {
       flex-basis: 100%;
@@ -1739,7 +1753,7 @@ For verification: the email should be r*********.**t@gmail.com
   <hr />
 
   <div class="flexy">
-<div id="mic-test"><!-- START: Mic Test -->
+<div id="mic-test" class="column"><!-- START: Mic Test -->
 <h2>Microphone Test</h2>
 <label for="recordLength">Recording Length &#40;in seconds&#41;:</label>
 <input id="recordLength" type="text" value="3" min="3" max="300" tabindex="3" size="1">
@@ -1752,14 +1766,14 @@ For verification: the email should be r*********.**t@gmail.com
 
 <hr id="touch-split" style="opacity: 25%;" />
 
-  <div id="touch-outer" class="flexy">
-<div id="touch-test"><!-- START: Touch Test -->
+  <div id="touch-outer" class="column">
+<div id="touch-test" style="width:100%;"><!-- START: Touch Test -->
 <h2 id="touch-header">Touch Test</h2>
-<div id="beegBox" class="beeg" style="display:none;position:absolute;z-index: 0;top:0;left:0;overflow: hidden;">
-	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-	<button type="button" class="butty" onclick="beegToggle(beegBox)" style="width:5%;top:50%;z-index:100;" tabindex="2">Hide test</button>
-	<br /><h1 style="color:white">CURRENT TOUCH POINTS</h1><h2 style="color:white"><div class="current-touch">0</div></h2>
-	<br /><h1 style="color:white">MAX TOUCH POINTS</h1><h2 style="color:white"><div class="max-touch">0</div></h2>
+<div id="beegBox" class="beeg" style="display:none;position:fixed;z-index: 1;top:0;left:0;overflow: hidden;">
+	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+	<h1 style="color:white">CURRENT TOUCH POINTS</h1><h2 style="color:white"><div class="current-touch">-</div></h2>
+<!--	<button type="button" class="butty" onclick="beegToggle(beegBox)" style="width:5%;top:50%" tabindex="2">Hide test</button> -->
+	<h1 style="color:white">MAX TOUCH POINTS</h1><h2 style="color:white"><div class="max-touch">-</div></h2>
 </div>
 
   <script type="text/javascript">
@@ -1767,6 +1781,8 @@ For verification: the email should be r*********.**t@gmail.com
 	var currnetTouchE = document.getElementsByClassName('current-touch')[0];
 	var maxTouchE = document.getElementsByClassName('max-touch')[0];
 	var maxTouch = 0;
+	var trueMaxTouch = navigator.maxTouchPoints;
+	maxTouchE.innerHTML = "-/" + trueMaxTouch;
 	
 	var pointSize = 30;
 	
@@ -1774,7 +1790,8 @@ For verification: the email should be r*********.**t@gmail.com
 	{
 	    currnetTouchE.innerHTML = number;
 	    if (number>maxTouch) maxTouch = number;
-	    maxTouchE.innerHTML = maxTouch;
+	    maxTouchE.innerHTML = maxTouch + "/" + trueMaxTouch;
+	    if (maxTouch === trueMaxTouch) maxTouchE.classList.add('rainbowWahooYippeeYayyy');
 	    
 	};
 	
@@ -1815,13 +1832,13 @@ For verification: the email should be r*********.**t@gmail.com
 	</script>
 
 
-<button class="butty" onclick="beegToggle(beegBox)" style="z-index: 1000;" tabindex="2">Show test</button>
+<br><br><br><button class="butty" onclick="beegToggle(beegBox)" style="z-index: 2;position:relative;width:70%;" tabindex="2">Toggle Touch Test</button>
 </div><!-- END: Touch Test -->
 </div>
 
 <hr style="opacity: 25%;" />
 
-<div id="webcam-test"><!-- START: Webcam Test -->
+<div id="webcam-test" class="column"><!-- START: Webcam Test -->
 <h2>Webcam Test</h2>
 <label for="recordLength" style="visibility:hidden;">filler</label>
 <input id="recordLength" style="visibility:hidden;" type="text" value="3" min="3" max="300" tabindex="3" size="1">
@@ -1830,6 +1847,7 @@ For verification: the email should be r*********.**t@gmail.com
 <div id="webcamWrapper"><!-- START: Webcam Wrapper -->
 <video id="videoPlayer" autoplay></video>
 </div><!-- END: Webcam Wrapper -->
+<br>
  </div><!-- END: Webcam Test -->
   </div>
 
@@ -1837,23 +1855,23 @@ For verification: the email should be r*********.**t@gmail.com
   <hr />
 
   <div id="audio-tests" class="flexy"><!-- START: Audio Tests -->
-<div>
+<div class="column">
 <h3>Left Channel</h3>
-<button class="butty" onclick="audioRapidfire('assets/left.ogg')" tabindex="4">Play</button>
+<button class="butty" onclick="audioRapidfire('assets/left.ogg')" tabindex="4" style="width:30%;">Play</button>
 </div>
 
     <hr />
 
-<div>
+<div class="column">
 <h3>Both Channels</h3>
-<button class="butty" onclick="audioRapidfire('assets/both.ogg')" tabindex="3">Play</button>
+<button class="butty" onclick="audioRapidfire('assets/both.ogg')" tabindex="3" style="width:30%;">Play</button>
 </div>
 
     <hr /> 
 
-<div>
+<div class="column">
 <h3>Right Channel</h3>
-<button class="butty" onclick="audioRapidfire('assets/right.ogg')" tabindex="5">Play</button>
+<button class="butty" onclick="audioRapidfire('assets/right.ogg')" tabindex="5" style="width:30%;">Play</button>
 </div>
 </div><!-- END: Audio Tests -->
 
